@@ -3090,14 +3090,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 620640704}
   characterController: {fileID: 1810843662}
-  walkingSpeed: 12
-  jumpSpeed: 15
-  gravity: 15
+  walkingSpeed: 15
+  jumpSpeed: 20
+  gravity: 30
   lookSpeed: 3.25
   lookXLimit: 90
   dashSpeed: 3
   dashTime: 0.25
-  cooldown: 1
+  cooldown: 0.75
   slamSpeed: 75
   isOnGround: 0
   canMove: 1
@@ -3459,6 +3459,7 @@ MeshFilter:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 724383328}
   - {fileID: 1882736794}
   - {fileID: 1109213210}
   - {fileID: 568891318}
@@ -3467,7 +3468,6 @@ SceneRoots:
   - {fileID: 704601542}
   - {fileID: 340786552}
   - {fileID: 94927476}
-  - {fileID: 724383328}
   - {fileID: 1006322770}
   - {fileID: 1475620785}
   - {fileID: 667192826}
