@@ -16,11 +16,13 @@ public class PistolBullet : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         targetPoint = GameObject.Find("Target");
         target = (targetPoint.transform.position - transform.position) * 1000;
+        transform.LookAt(target);
+        rb.AddForce(transform.forward * speed, ForceMode.Impulse);
     }
 
     void Update()
     {
-        rb.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
+        //rb.transform.position = Vector3.MoveTowards(transform.position, target, speed * Time.deltaTime);
     }
 
     IEnumerator DestroyAfterSomeTime()
@@ -33,5 +35,9 @@ public class PistolBullet : MonoBehaviour
     {
         Instantiate(explosion, transform.position, transform.rotation);
         Destroy(gameObject);
+        if(collision.gameObject.GetComponent<Health>() != null)
+        {
+            collision.gameObject.GetComponent<Health>().hp -= damage;
+        }
     }
 }

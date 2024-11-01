@@ -5123,7 +5123,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92680ac6b76a5a64dae430ea601f115e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  expForce: 25
   force: 25
+  radius: 25
   shakeStrength: 1
   shakeDuration: 100
   explosion: {fileID: 2442722119935078670, guid: 3a78ffd7897180141bb13e7cdf2e31d6, type: 3}

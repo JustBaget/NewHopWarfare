@@ -24805,14 +24805,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3001227630666020126}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.6, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.099999785, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8104134423180394612}
   - {fileID: 5530088916913907560}
-  m_Father: {fileID: 3213817415711239297}
+  m_Father: {fileID: 5505074154371911658}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &7656183855170450805
 MonoBehaviour:
@@ -29841,6 +29841,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9127873408071320536}
+  - {fileID: 4258474958058821497}
   m_Father: {fileID: 3213817415711239297}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!20 &916021019099607809
@@ -34818,7 +34819,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3213817415711239297}
   - component: {fileID: 8409228738355308744}
-  - component: {fileID: 8635989136546189038}
   - component: {fileID: 7662255701923004396}
   - component: {fileID: 9167093717934008178}
   m_Layer: 0
@@ -34841,7 +34841,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 4258474958058821497}
   - {fileID: 5505074154371911658}
   - {fileID: 2979338427291311197}
   m_Father: {fileID: 0}
@@ -34859,6 +34858,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 70
+  smoothness: 0
   jumpForce: 7.5
   dashForce: 30
   dashCD: 0
@@ -34866,33 +34866,6 @@ MonoBehaviour:
   doubleClickTime: 0.2
   cameraObj: {fileID: 3553510373170843459}
   canMove: 1
---- !u!54 &8635989136546189038
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3879795537733514460}
-  serializedVersion: 4
-  m_Mass: 50
-  m_Drag: 0
-  m_AngularDrag: 1
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 112
-  m_CollisionDetection: 1
 --- !u!136 &7662255701923004396
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class GrenadeScript : MonoBehaviour
 {
+    public float expForce = 10f;
     public float force;
+    public float radius = 5f;
     public float shakeStrength;
     public int shakeDuration;
     public GameObject explosion;
@@ -27,6 +29,16 @@ public class GrenadeScript : MonoBehaviour
         StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
         Instantiate(explosion, transform.position, transform.rotation);
         Debug.Log("Exploded");
+
+        Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+        foreach (Collider nearbyObject in colliders)
+        {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(expForce, transform.position, radius);
+            }
+        }
         Destroy(gameObject);
     }
 }

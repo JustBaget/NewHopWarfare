@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class PlayerShotgun : MonoBehaviour
 {
+    public Movement player;
+
     [Header("Основные Настройки")]
     public GameObject firePoint;
     public GameObject shotgunModel;
@@ -141,6 +143,7 @@ public class PlayerShotgun : MonoBehaviour
                 {
                     Instantiate(extraBullet, firePoint.transform.position, firePoint.transform.rotation);
                 }
+            player.StartRecoil();
         }
 
         //КОЛХОЗНЫЕ ТАЙМЕРЫ - их задача отслеживать время зажатия и делать что-то, отталикваясь от этого

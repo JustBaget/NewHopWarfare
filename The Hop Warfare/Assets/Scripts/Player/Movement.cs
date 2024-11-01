@@ -6,16 +6,23 @@ public class Movement : MonoBehaviour
 {
     public Camera playerCamera;
     public Dash Dash;
+    public CharacterController characterController;
+    public Rigidbody rb;
 
     public float walkingSpeed = 8.0f;
     public float jumpSpeed = 8.0f;
     public float gravity = 10.0f;
-    float rotationX = 0;
+    public float rotationX = 0;
+    public float maxVelocity;
 
     public float lookSpeed = 3.25f;
     public float lookXLimit = 100.0f;
 
-    public CharacterController characterController;
+    public float recoilForce;
+    public float recoilTime;
+    public bool isRecoilEnding;
+
+    public float speedXModifier;
 
     //переменная публичная, т.к. используется в скрипте Dash
     public Vector3 moveDirection = Vector3.zero;
@@ -36,6 +43,7 @@ public class Movement : MonoBehaviour
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -53,7 +61,17 @@ public class Movement : MonoBehaviour
         }
         movementDirectionY = moveDirection.y;
         movementDirectionX = moveDirection.x;
-        moveDirection = (forward * curSpeedX) + (right * curSpeedY);
+        moveDirection = (forward * (curSpeedX - speedXModifier)) + (right * curSpeedY);
+
+        //float moveHorizontal = Input.GetAxis("Horizontal");
+        //float moveVertical = Input.GetAxis("Vertical");
+        //Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
+        //rb.AddForce(movement * walkingSpeed);
+
+        //if (rb.velocity.magnitude >= maxVelocity)
+        //{
+        //    rb.velocity = rb.velocity.normalized * maxVelocity;
+        //}
 
         //Прыжок
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
@@ -74,7 +92,7 @@ public class Movement : MonoBehaviour
         characterController.Move(moveDirection * Time.deltaTime);
 
         //Приземление
-        if (Input.GetKeyDown(KeyCode.Q) && isSlamming == false && !characterController.isGrounded)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && isSlamming == false && !characterController.isGrounded)
         {
             isSlamming = true;
         }
@@ -95,5 +113,20 @@ public class Movement : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+    }
+
+    public void StartRecoil()
+    {
+        StartCoroutine(Recoil());
+    }
+    private IEnumerator Recoil()
+    {
+        speedXModifier = 100;
+        yield return new WaitForSeconds(recoilTime);
+        speedXModifier = 20;
+        yield return new WaitForSeconds(recoilTime*2);
+        speedXModifier = 5;
+        yield return new WaitForSeconds(recoilTime * 2);
+        speedXModifier = 0;
     }
 }

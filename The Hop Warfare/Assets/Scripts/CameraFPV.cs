@@ -32,7 +32,7 @@ public class CameraFPV : MonoBehaviour
     void LateUpdate()
     {
         FieldOfViev();
-        CameraRotation();
+        //CameraRotation();
     }
 
     void CameraRotation()
