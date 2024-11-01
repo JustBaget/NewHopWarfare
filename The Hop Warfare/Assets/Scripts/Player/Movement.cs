@@ -4,32 +4,52 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    public Camera playerCamera;
-    public Dash Dash;
-    public CharacterController characterController;
-    public Rigidbody rb;
+    [Header("Другие скрипты/объекты")]
 
+    public Camera playerCamera;
+    public CharacterController characterController;
+
+    [Header("Ходьба")]
     public float walkingSpeed = 8.0f;
+
+    [Header("Прыжок")]
     public float jumpSpeed = 8.0f;
     public float gravity = 10.0f;
-    public float rotationX = 0;
-    public float maxVelocity;
 
+    [Header("Вращение камерой")]
     public float lookSpeed = 3.25f;
     public float lookXLimit = 100.0f;
+    private float rotationX = 0;
 
+    [Header("Рывок")]
+    public float dashSpeed;
+    public float dashTime;
+
+    [Header("Слэм/резкое приземление")]
+    public float slamSpeed;
+
+    [Header("Отдача дробовика")]
     public float recoilForce;
     public float recoilTime;
-    public bool isRecoilEnding;
+    public float verticalRecoil;
 
-    public float speedXModifier;
+    private bool isRecoilActive;
 
+    private float speedXModifier;
+    private float speedYModifier;
+
+    [Header("Проверка прочих переменных (НЕ ИЗМЕНЯТЬ В РЕДАКТОРЕ)")]
     //переменная публичная, т.к. используется в скрипте Dash
     public Vector3 moveDirection = Vector3.zero;
 
     //то же, что и с moveDirection
     public float movementDirectionX;
     float movementDirectionY;
+
+    public bool isDashing;
+
+    [SerializeField]
+    float cameraRotation;
 
     [SerializeField]
     bool canMove = true;
@@ -39,11 +59,9 @@ public class Movement : MonoBehaviour
     void Start()
     {
         characterController = GetComponent<CharacterController>();
-        Dash = GetComponent<Dash>();
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        rb = GetComponent<Rigidbody>();
     }
 
     void Update()
@@ -54,24 +72,23 @@ public class Movement : MonoBehaviour
         float curSpeedY = canMove ? (walkingSpeed) * Input.GetAxis("Horizontal") : 0;
 
         //Во время рывка движение по вертикали останавливается (В ультракалле тоже)
-        if (Dash.isDashing)
+        if (isDashing)
         {
             moveDirection.y = 0;
             isSlamming = false;
         }
-        movementDirectionY = moveDirection.y;
+        if (!isRecoilActive)
+        {
+            movementDirectionY = moveDirection.y;
+        }
+        else
+        {
+            movementDirectionY = speedYModifier;
+        }
         movementDirectionX = moveDirection.x;
         moveDirection = (forward * (curSpeedX - speedXModifier)) + (right * curSpeedY);
 
-        //float moveHorizontal = Input.GetAxis("Horizontal");
-        //float moveVertical = Input.GetAxis("Vertical");
-        //Vector3 movement = new Vector3(moveHorizontal, 0, moveVertical);
-        //rb.AddForce(movement * walkingSpeed);
-
-        //if (rb.velocity.magnitude >= maxVelocity)
-        //{
-        //    rb.velocity = rb.velocity.normalized * maxVelocity;
-        //}
+        cameraRotation = playerCamera.transform.localRotation.x * 20;
 
         //Прыжок
         if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
@@ -98,7 +115,7 @@ public class Movement : MonoBehaviour
         }
         if (isSlamming == true)
         {
-            moveDirection.y = -75f;
+            moveDirection.y = -(slamSpeed);
             if (characterController.isGrounded)
             {
                 isSlamming = false;
@@ -113,20 +130,41 @@ public class Movement : MonoBehaviour
             playerCamera.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+        //Рывок
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            StartCoroutine(StartDash());
+        }
     }
 
+    IEnumerator StartDash()
+    {
+        isDashing = true;
+        float startTime = Time.time;
+
+        while (Time.time < startTime + dashTime)
+        {
+            characterController.Move(moveDirection * dashSpeed * Time.deltaTime);
+
+            yield return null;
+        }
+        isDashing = false;
+    }
+
+    //Отдача дробовика
     public void StartRecoil()
     {
         StartCoroutine(Recoil());
     }
     private IEnumerator Recoil()
     {
-        speedXModifier = 100;
+        isRecoilActive = true;
+        speedXModifier = recoilForce - (cameraRotation * 3);
+        speedYModifier = cameraRotation * verticalRecoil;
         yield return new WaitForSeconds(recoilTime);
-        speedXModifier = 20;
-        yield return new WaitForSeconds(recoilTime*2);
-        speedXModifier = 5;
-        yield return new WaitForSeconds(recoilTime * 2);
         speedXModifier = 0;
+        speedYModifier = 0;
+        isRecoilActive = false;
     }
 }

@@ -18,12 +18,12 @@ public class CameraFPV : MonoBehaviour
     public GameObject player;
     Camera cameraObj;
     float currentVelocity;
-    Rigidbody rb;
+    //Rigidbody rb;
     
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        rb = player.GetComponent<Rigidbody>();
+        //rb = player.GetComponent<Rigidbody>();
         FOV = GetComponent<Camera>().fieldOfView;
         cameraObj = GetComponent<Camera>();
         FOV = startFOV;
@@ -59,7 +59,7 @@ public class CameraFPV : MonoBehaviour
 
     void FieldOfViev()
     {
-        FOV = Mathf.Lerp(FOV, startFOV + rb.velocity.magnitude, FOVChangeSpeed * Time.deltaTime);
+        //FOV = Mathf.Lerp(FOV, startFOV + rb.velocity.magnitude, FOVChangeSpeed * Time.deltaTime);
         FOV = Mathf.Clamp(FOV, startFOV, maxFOV);
         cameraObj.fieldOfView = FOV;
     }

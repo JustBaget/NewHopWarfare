@@ -44,7 +44,7 @@ public class PlayerPistol : MonoBehaviour
             pistolAnimation2.SetTrigger("ShotUsuialBullet");
             canShot = false;
             soundManager.PistolShotSounds();
-            StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
+            //StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
             StartCoroutine(Reload());
 
             for (int i = 0; i < effect.Length; i++)
@@ -60,7 +60,7 @@ public class PlayerPistol : MonoBehaviour
         {
             pistolAnimation.SetTrigger("ShotTrigger");
             Instantiate(grenade, firePoint.transform.position, firePoint.transform.rotation);
-            StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
+            //StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
             soundManager.PistolGrenadeSound();
             StartCoroutine(ReloadGrenade());
             canShotGrenade = false;

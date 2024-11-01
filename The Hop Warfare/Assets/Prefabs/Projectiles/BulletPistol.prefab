@@ -5156,7 +5156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 997403bf4e9eae94ab28987c7f423166, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 10
   damage: 20
   lifeTime: 5
   explosion: {fileID: 4899079318590237841, guid: 5584167eb0f1f6c42bd0b90ef481a45e, type: 3}
@@ -5168,7 +5168,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8318737975202134253}
   serializedVersion: 4
-  m_Mass: 0.0025
+  m_Mass: 0.1
   m_Drag: 0
   m_AngularDrag: 0.05
   m_CenterOfMass: {x: 0, y: 0, z: 0}

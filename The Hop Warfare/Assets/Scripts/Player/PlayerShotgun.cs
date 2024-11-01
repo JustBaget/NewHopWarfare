@@ -87,7 +87,7 @@ public class PlayerShotgun : MonoBehaviour
 
             soundManager.ShotgunShotSounds();
             handRecoil.SetTrigger("ShotgunRecoil");
-            StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
+            //StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
             StartCoroutine(Reload());
         }
     }
@@ -124,7 +124,7 @@ public class PlayerShotgun : MonoBehaviour
             Debug.Log("Атака сделана правильно");
             usingSpecial = false; //Щас не используется спец атака
             canShootDefault = true; //Можно делать обычный выстрел
-            StartCoroutine(cameraFPV.InstantShake(shakeSpecialStrength, shakeSpecialDuration)); //Тряска камеры
+            //StartCoroutine(cameraFPV.InstantShake(shakeSpecialStrength, shakeSpecialDuration)); //Тряска камеры
             handRecoil.SetTrigger("ShotgunRecoil"); //Анимация отдачи
             indicator.SetTrigger("Unloading"); //Анимация разрядки индикатора
             Instantiate(explosionDonut, firePoint.transform.position, firePoint.transform.rotation); //Создание колцевого взрыва
@@ -132,7 +132,7 @@ public class PlayerShotgun : MonoBehaviour
             StopCoroutine(ShotgunShake()); //Отменяем корутину тряски
             Fire(false); //Тушим огонь
             LoadingParticles(false); //Отключаем зарядку
-            playerRB.AddForce((playerRB.position - target.transform.position).normalized * specialAttackKnockdown, ForceMode.VelocityChange); //Отдача
+            //playerRB.AddForce((playerRB.position - target.transform.position).normalized * specialAttackKnockdown, ForceMode.VelocityChange); //Отдача
 
                 for (int i = 0; i < effectsStrong.Length; i++) //Эффекты
                 {
@@ -154,7 +154,7 @@ public class PlayerShotgun : MonoBehaviour
             Debug.Log("Атака готова"); //Смена цвета на готовый к атаке
             indicatorColor.material.color = colors[1]; //Меняем цвет на оранжевый
             effectWhenReady.Play(); //Вспышка при готовности
-            StartCoroutine(cameraFPV.InstantShake(shakeLongStrength, 10));
+            //StartCoroutine(cameraFPV.InstantShake(shakeLongStrength, 10));
         }
 
         if(currentTime >= specialAttackTooMuch && !colorChangedToTooMuch) //Игрок держит кнопку опасно долго
@@ -167,7 +167,7 @@ public class PlayerShotgun : MonoBehaviour
 
         if(currentTime >= specialAttackTooMuch && usingSpecial)
         {
-            StartCoroutine(cameraFPV.InstantShake(shakeLongStrength, 1));
+            //StartCoroutine(cameraFPV.InstantShake(shakeLongStrength, 1));
         }
 
         if(Input.GetMouseButtonUp(1) && currentTime <= specialAttackDuration && usingSpecial) //Кнопку отпустили, но слишком рано

@@ -1487,8 +1487,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents:
-    - {fileID: 8409228738355308744, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
     - {fileID: 7656183855170450805, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
+    - {fileID: 8409228738355308744, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 3213817415711239297, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
@@ -1501,12 +1501,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3879795537733514460, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1810843662}
-    - targetCorrespondingSourceObject: {fileID: 3879795537733514460, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1810843664}
-    - targetCorrespondingSourceObject: {fileID: 3879795537733514460, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1810843667}
   m_SourcePrefab: {fileID: 100100000, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
 --- !u!1 &778836299
 GameObject:
@@ -3079,66 +3073,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCamera: {fileID: 620640704}
-  Dash: {fileID: 0}
   characterController: {fileID: 1810843662}
-  rb: {fileID: 0}
   walkingSpeed: 12
   jumpSpeed: 15
   gravity: 15
-  rotationX: 0
-  maxVelocity: 7
   lookSpeed: 3.25
-  lookXLimit: 100
+  lookXLimit: 90
+  dashSpeed: 3
+  dashTime: 0.25
+  slamSpeed: 75
   recoilForce: 50
-  recoilTime: 0.125
-  isRecoilEnding: 0
-  speedXModifier: 0
+  recoilTime: 0.25
+  verticalRecoil: 1
   moveDirection: {x: 0, y: 0, z: 0}
   movementDirectionX: 0
+  isDashing: 0
+  cameraRotation: 0
   canMove: 1
   isSlamming: 0
---- !u!114 &1810843664
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810843659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19d53fbea110de5448d9045e104e79d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashSpeed: 3
-  dashTime: 0.2
-  isDashing: 0
---- !u!54 &1810843667
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1810843659}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 1
-  m_Constraints: 112
-  m_CollisionDetection: 2
 --- !u!1 &1882736790
 GameObject:
   m_ObjectHideFlags: 0

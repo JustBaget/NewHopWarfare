@@ -29819,7 +29819,6 @@ GameObject:
   - component: {fileID: 5505074154371911658}
   - component: {fileID: 916021019099607809}
   - component: {fileID: 1810733211195421266}
-  - component: {fileID: 3649081025905471410}
   m_Layer: 0
   m_Name: FPV Camera
   m_TagString: Untagged
@@ -29903,24 +29902,6 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3553510373170843459}
   m_Enabled: 1
---- !u!114 &3649081025905471410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3553510373170843459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: de3f6d8555bd8b04dbfa4bf572a4c8ec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cameraSpeed: 100
-  cameraSmooth: 15
-  FOVChangeSpeed: 10
-  startFOV: 80
-  maxFOV: 100
-  player: {fileID: 3879795537733514460}
 --- !u!1 &3559953887207224582
 GameObject:
   m_ObjectHideFlags: 0
@@ -44772,6 +44753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b08f1888ecc619f48b56eae5456087b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   firePoint: {fileID: 8538550505316590516}
   shotgunModel: {fileID: 4827079018460461432}
   handRecoil: {fileID: 6629333130715438598}
