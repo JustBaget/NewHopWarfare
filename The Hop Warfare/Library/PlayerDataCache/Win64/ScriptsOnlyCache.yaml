@@ -1,8 +1,6 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - CameraFPV
-    - Dash
     - DestroyAfterTime
     - GrenadeScript
     - Health
@@ -94,15 +92,13 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 6134}
     - Class: 114
-      Script: {instanceID: 6258}
+      Script: {instanceID: 6982}
     - Class: 114
-      Script: {instanceID: 6984}
+      Script: {instanceID: 7024}
     - Class: 114
-      Script: {instanceID: 7026}
+      Script: {instanceID: 7244}
     - Class: 114
-      Script: {instanceID: 7246}
-    - Class: 114
-      Script: {instanceID: 7786}
+      Script: {instanceID: 7784}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -458,7 +454,7 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 4435ebe1d39cbc216e7844ad79430d99
+      Hash: ba07607d9b14b13c75c4c41700717561
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: PlayerShotgun
@@ -812,12 +808,6 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
-      Hash: f3a615eb9ea8facfd92adcd700c86200
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Dash
-  - hash:
-      serializedVersion: 2
       Hash: f669be52680c88846b2093fd41d1e06e
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -950,7 +940,7 @@ ScriptsOnlyBuild:
     className: ControlTrack
   - hash:
       serializedVersion: 2
-      Hash: 16ec2c241ac9b8053be8417f0c8451b7
+      Hash: 9786b3f8e6a0e05f81cc244de2b13713
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: Movement
@@ -1065,4 +1055,4 @@ ScriptsOnlyBuild:
   platform: 19
   scenePathNames:
   - Assets/Scenes/Test.unity
-  playerPath: D:/Games/3/The Hop Warfare.exe
+  playerPath: D:/Games/4/The Hop Warfare.exe
