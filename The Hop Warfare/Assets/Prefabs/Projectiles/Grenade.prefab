@@ -5126,4 +5126,4 @@ MonoBehaviour:
   force: 25
   shakeStrength: 1
   shakeDuration: 100
-  explosion: {fileID: 2738674686914809734, guid: c66c4bfbce8754f418f710ad0f05ac27, type: 3}
+  explosion: {fileID: 2442722119935078670, guid: 3a78ffd7897180141bb13e7cdf2e31d6, type: 3}

@@ -26,6 +26,7 @@ public class GrenadeScript : MonoBehaviour
         soundManager.GrenadeExplodeSounds();
         StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
         Instantiate(explosion, transform.position, transform.rotation);
+        Debug.Log("Exploded");
         Destroy(gameObject);
     }
 }

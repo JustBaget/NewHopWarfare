@@ -80,7 +80,7 @@ public class Movement : MonoBehaviour
         }
         if (isSlamming == true)
         {
-            moveDirection.y = -25f;
+            moveDirection.y = -75f;
             if (characterController.isGrounded)
             {
                 isSlamming = false;
