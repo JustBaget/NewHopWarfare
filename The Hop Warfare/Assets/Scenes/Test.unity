@@ -1411,6 +1411,22 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1810843663}
     - target: {fileID: 6339442473926492841, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
+      propertyPath: recoilTime
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339442473926492841, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
+      propertyPath: recoilForce
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339442473926492841, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
+      propertyPath: verticalRecoil
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339442473926492841, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
+      propertyPath: shakeLongStrength
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6339442473926492841, guid: 405f02cc4ca81bc4ca555cbaa148b0d9, type: 3}
       propertyPath: specialAttackKnockdown
       value: 750
       objectReference: {fileID: 0}
@@ -3081,16 +3097,13 @@ MonoBehaviour:
   lookXLimit: 90
   dashSpeed: 3
   dashTime: 0.25
+  cooldown: 1
   slamSpeed: 75
-  recoilForce: 50
-  recoilTime: 0.25
-  verticalRecoil: 1
+  isOnGround: 0
+  canMove: 1
+  canDash: 1
   moveDirection: {x: 0, y: 0, z: 0}
   movementDirectionX: 0
-  isDashing: 0
-  cameraRotation: 0
-  canMove: 1
-  isSlamming: 0
 --- !u!1 &1882736790
 GameObject:
   m_ObjectHideFlags: 0

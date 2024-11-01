@@ -54,6 +54,11 @@ public class PlayerShotgun : MonoBehaviour
     public ParticleSystem[] loading;
     public Color[] colors;
 
+    [Header("Отдача")]
+    public float recoilForce;
+    public float recoilTime;
+    public float verticalRecoil;
+
     void Start()
     {
         playerRB = GameObject.Find("Player").GetComponent<Rigidbody>();
@@ -143,7 +148,7 @@ public class PlayerShotgun : MonoBehaviour
                 {
                     Instantiate(extraBullet, firePoint.transform.position, firePoint.transform.rotation);
                 }
-            player.StartRecoil();
+            player.StartRecoil(recoilForce, verticalRecoil, recoilTime);
         }
 
         //КОЛХОЗНЫЕ ТАЙМЕРЫ - их задача отслеживать время зажатия и делать что-то, отталикваясь от этого
@@ -195,7 +200,7 @@ public class PlayerShotgun : MonoBehaviour
             Fire(false); //Тушим огонь
             LoadingParticles(false); //Отключаем зарядку
             Instantiate(explosionSphere, firePoint.transform.position, firePoint.transform.rotation); //Создаем взрыв
-            playerRB.AddForce((playerRB.position - target.transform.position).normalized * specialAttacFailKnockdown, ForceMode.VelocityChange);
+            //playerRB.AddForce((playerRB.position - target.transform.position).normalized * specialAttacFailKnockdown, ForceMode.VelocityChange);
             Instantiate(explosionDonut, firePoint.transform.position, firePoint.transform.rotation); //Создание колцевого взрыва
         }
     }

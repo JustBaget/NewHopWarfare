@@ -9,14 +9,12 @@ public class Movement : MonoBehaviour
     public Camera playerCamera;
     public CharacterController characterController;
 
-    [Header("Ходьба")]
+    [Header("Основное")]
     public float walkingSpeed = 8.0f;
-
-    [Header("Прыжок")]
     public float jumpSpeed = 8.0f;
     public float gravity = 10.0f;
 
-    [Header("Вращение камерой")]
+    [Header("Камера")]
     public float lookSpeed = 3.25f;
     public float lookXLimit = 100.0f;
     private float rotationX = 0;
@@ -24,36 +22,31 @@ public class Movement : MonoBehaviour
     [Header("Рывок")]
     public float dashSpeed;
     public float dashTime;
+    public float cooldown;
 
     [Header("Слэм/резкое приземление")]
     public float slamSpeed;
 
-    [Header("Отдача дробовика")]
-    public float recoilForce;
-    public float recoilTime;
-    public float verticalRecoil;
-
-    private bool isRecoilActive;
+    [Header("Датчики")]
+    public bool isOnGround;
+    public bool canMove = true;
+    public bool canDash = true;
 
     private float speedXModifier;
     private float speedYModifier;
 
-    [Header("Проверка прочих переменных (НЕ ИЗМЕНЯТЬ В РЕДАКТОРЕ)")]
+    [HideInInspector]
     //переменная публичная, т.к. используется в скрипте Dash
     public Vector3 moveDirection = Vector3.zero;
 
+    [HideInInspector]
     //то же, что и с moveDirection
     public float movementDirectionX;
+
+    bool isRecoilActive;
     float movementDirectionY;
-
-    public bool isDashing;
-
-    [SerializeField]
+    bool isDashing;
     float cameraRotation;
-
-    [SerializeField]
-    bool canMove = true;
-    [SerializeField]
     bool isSlamming = false;
 
     void Start()
@@ -70,6 +63,8 @@ public class Movement : MonoBehaviour
         Vector3 right = transform.TransformDirection(Vector3.right);
         float curSpeedX = canMove ? (walkingSpeed) * Input.GetAxis("Vertical") : 0;
         float curSpeedY = canMove ? (walkingSpeed) * Input.GetAxis("Horizontal") : 0;
+
+        isOnGround = characterController.isGrounded;
 
         //Во время рывка движение по вертикали останавливается (В ультракалле тоже)
         if (isDashing)
@@ -132,9 +127,11 @@ public class Movement : MonoBehaviour
         }
 
         //Рывок
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash == true)
         {
+            canDash = false;
             StartCoroutine(StartDash());
+            StartCoroutine(DashCooldown());
         }
     }
 
@@ -151,18 +148,23 @@ public class Movement : MonoBehaviour
         }
         isDashing = false;
     }
+    IEnumerator DashCooldown()
+    {
+        yield return new WaitForSeconds(cooldown);
+        canDash = true;
+    }
 
     //Отдача дробовика
-    public void StartRecoil()
+    public void StartRecoil(float force, float verticalForce, float cooldown)
     {
-        StartCoroutine(Recoil());
+        StartCoroutine(Recoil(force, verticalForce, cooldown));
     }
-    private IEnumerator Recoil()
+    public IEnumerator Recoil(float force, float verticalForce, float cooldown)
     {
         isRecoilActive = true;
-        speedXModifier = recoilForce - (cameraRotation * 3);
-        speedYModifier = cameraRotation * verticalRecoil;
-        yield return new WaitForSeconds(recoilTime);
+        speedXModifier = force - (cameraRotation * 3);
+        speedYModifier = cameraRotation * verticalForce;
+        yield return new WaitForSeconds(cooldown);
         speedXModifier = 0;
         speedYModifier = 0;
         isRecoilActive = false;
