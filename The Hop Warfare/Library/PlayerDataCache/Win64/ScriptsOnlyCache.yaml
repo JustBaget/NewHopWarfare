@@ -3,12 +3,10 @@ ScriptsOnlyBuild:
     Assembly-CSharp.dll:
     - DestroyAfterTime
     - GrenadeScript
-    - Health
     - Movement
     - PistolBullet
     - PistolCanShootIndicators
     - PlayerChangeWeapons
-    - PlayerNewMovement
     - PlayerPistol
     - PlayerShotgun
     - Restart
@@ -16,17 +14,54 @@ ScriptsOnlyBuild:
     - ShotgunBullet
     - TargetPoint
     - UltimateSoundScript
-    - WeaponsFollow
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
+    Unity.TextMeshPro:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    Unity.TextMeshPro.dll:
+    - TMPro.TMP_FontAsset
+    - TMPro.TMP_Settings
+    - TMPro.TMP_SpriteAsset
+    - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
     - UnityEditor.TestTools.TestRunner.TestListCacheData
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
-  serializedClasses: {}
+    UnityEngine.UI.dll:
+    - UnityEngine.UI.CanvasScaler
+    - UnityEngine.UI.GraphicRaycaster
+  serializedClasses:
+    Unity.TextMeshPro:
+    - TMPro.FaceInfo_Legacy
+    - TMPro.FontAssetCreationSettings
+    - TMPro.KerningTable
+    - TMPro.TMP_Character
+    - TMPro.TMP_FontFeatureTable
+    - TMPro.TMP_FontWeightPair
+    - TMPro.TMP_GlyphAdjustmentRecord
+    - TMPro.TMP_GlyphPairAdjustmentRecord
+    - TMPro.TMP_GlyphValueRecord
+    - TMPro.TMP_Sprite
+    - TMPro.TMP_SpriteCharacter
+    - TMPro.TMP_SpriteGlyph
+    - TMPro.TMP_Style
+    - TMPro.VertexGradient
+    UnityEngine.CoreModule:
+    - UnityEngine.Events.PersistentCallGroup
+    UnityEngine.TextCoreFontEngineModule:
+    - UnityEngine.TextCore.FaceInfo
+    - UnityEngine.TextCore.Glyph
+    - UnityEngine.TextCore.GlyphMetrics
+    - UnityEngine.TextCore.GlyphRect
+    UnityEngine.UI:
+    - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
   methodsToPreserve: []
   sceneClasses:
-    Assets/Scenes/Test.unity:
+    Assets/Scenes/Levels/Level-1-Storage.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -44,6 +79,8 @@ ScriptsOnlyBuild:
     - Class: 43
       Script: {instanceID: 0}
     - Class: 48
+      Script: {instanceID: 0}
+    - Class: 49
       Script: {instanceID: 0}
     - Class: 54
       Script: {instanceID: 0}
@@ -65,40 +102,50 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 96
       Script: {instanceID: 0}
-    - Class: 102
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 7000}
+      Script: {instanceID: 2154}
     - Class: 114
-      Script: {instanceID: 7882}
+      Script: {instanceID: 2398}
     - Class: 114
-      Script: {instanceID: 7886}
+      Script: {instanceID: 2776}
     - Class: 114
-      Script: {instanceID: 7890}
+      Script: {instanceID: 3128}
     - Class: 114
-      Script: {instanceID: 7894}
+      Script: {instanceID: 3780}
     - Class: 114
-      Script: {instanceID: 7902}
+      Script: {instanceID: 3806}
     - Class: 114
-      Script: {instanceID: 7906}
+      Script: {instanceID: 4042}
     - Class: 114
-      Script: {instanceID: 7914}
+      Script: {instanceID: 4292}
     - Class: 114
-      Script: {instanceID: 7918}
+      Script: {instanceID: 4454}
     - Class: 114
-      Script: {instanceID: 7922}
+      Script: {instanceID: 4984}
     - Class: 114
-      Script: {instanceID: 7926}
+      Script: {instanceID: 5132}
     - Class: 114
-      Script: {instanceID: 7930}
+      Script: {instanceID: 5530}
     - Class: 114
-      Script: {instanceID: 7942}
+      Script: {instanceID: 5680}
     - Class: 114
-      Script: {instanceID: 7946}
+      Script: {instanceID: 5886}
+    - Class: 114
+      Script: {instanceID: 5924}
+    - Class: 114
+      Script: {instanceID: 6134}
+    - Class: 114
+      Script: {instanceID: 6982}
+    - Class: 114
+      Script: {instanceID: 7024}
+    - Class: 114
+      Script: {instanceID: 7244}
+    - Class: 114
+      Script: {instanceID: 7784}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -120,6 +167,12 @@ ScriptsOnlyBuild:
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -218,6 +271,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: RawImage
+  - hash:
+      serializedVersion: 2
+      Hash: f214d698a81fb9650366ef817230c0fa
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Restart
   - hash:
       serializedVersion: 2
       Hash: 1321993db8249e1e05e1e0492b2bbdc3
@@ -340,6 +399,12 @@ ScriptsOnlyBuild:
     className: UnityOnInputFieldValueChangedMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 7e10ff0626672112fbe3b589e3d82cbe
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: GrenadeScript
+  - hash:
+      serializedVersion: 2
       Hash: bb8d968ef4474e71aaad4a4dce279f90
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -442,10 +507,28 @@ ScriptsOnlyBuild:
     className: UnityOnPointerExitMessageListener
   - hash:
       serializedVersion: 2
+      Hash: ba07607d9b14b13c75c4c41700717561
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerShotgun
+  - hash:
+      serializedVersion: 2
+      Hash: 05277516a8d7dd20bd9b052c337c3daa
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: ShockWaveScript
+  - hash:
+      serializedVersion: 2
       Hash: b747f5d40674055dd70e18552f1b0447
     assemblyName: UnityEngine.UI
     namespaceName: UnityEngine.UI
     className: Mask
+  - hash:
+      serializedVersion: 2
+      Hash: e9aa4aeb7e61afb060e74a42539f3ec0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: Health
   - hash:
       serializedVersion: 2
       Hash: 4718916586b3818eb69bf65df61f0f3a
@@ -482,6 +565,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
     className: ControlPlayableAsset
+  - hash:
+      serializedVersion: 2
+      Hash: 2a9f6d0dcd19ec1bc869895c1769ee00
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: WeaponsFollow
   - hash:
       serializedVersion: 2
       Hash: 1a680d9a08de79b0d2c779e78c9843b4
@@ -524,6 +613,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnCancelMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 4bc232ebf3bfe0dd8458b3d2090293f9
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TargetPoint
   - hash:
       serializedVersion: 2
       Hash: 7e9cad7f71f9cc52f699bbd2d2a75734
@@ -646,6 +741,12 @@ ScriptsOnlyBuild:
     className: PanelEventHandler
   - hash:
       serializedVersion: 2
+      Hash: b481988005615df84f826b80aafc19be
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PistolBullet
+  - hash:
+      serializedVersion: 2
       Hash: 9dd54ce33440072d6692a67e0c384ad1
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
@@ -700,6 +801,18 @@ ScriptsOnlyBuild:
     className: UnityOnMouseUpAsButtonMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 7b9b0fdb271c1ed8e7e8ef2a87d83043
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerPistol
+  - hash:
+      serializedVersion: 2
+      Hash: 8e1a9dff5881e9e0b1ace91d378305b2
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PistolCanShootIndicators
+  - hash:
+      serializedVersion: 2
       Hash: 4f353524ce6564e40764f1ea080b2d85
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -734,6 +847,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.TestRunner
     namespaceName: UnityEngine.TestTools
     className: BeforeAfterTestCommandState
+  - hash:
+      serializedVersion: 2
+      Hash: ae59ac1c260fe95e0af6d085d1cd647a
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: DestroyAfterTime
   - hash:
       serializedVersion: 2
       Hash: 8bbce9932f67ad8e7f4eefec87800f94
@@ -862,6 +981,12 @@ ScriptsOnlyBuild:
     className: UnityOnMoveMessageListener
   - hash:
       serializedVersion: 2
+      Hash: 3e31e363acb124e7280b7535aa24d147
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerChangeWeapons
+  - hash:
+      serializedVersion: 2
       Hash: d0392b7f3f52d5af537ade186b4f51f1
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
@@ -880,10 +1005,22 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
+      Hash: bd4ee7c1cd814ad5e5d0d1a4d0703d0d
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerNewMovement
+  - hash:
+      serializedVersion: 2
       Hash: 9a174471d4db2c0c6d3ac47d2f818db1
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnParticleCollisionMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 937da5a88783c25a4edc4d092de57baf
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: UltimateSoundScript
   - hash:
       serializedVersion: 2
       Hash: 0f5a086d4d028363983ba6ca30a01397
@@ -916,6 +1053,12 @@ ScriptsOnlyBuild:
     className: TMP_ScrollbarEventHandler
   - hash:
       serializedVersion: 2
+      Hash: d6322cfb0258cefc5628d59a0f3bc591
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: CameraFPV
+  - hash:
+      serializedVersion: 2
       Hash: ff76cf6cf52b4db7b95af6ffadca9288
     assemblyName: Unity.Timeline
     namespaceName: UnityEngine.Timeline
@@ -926,6 +1069,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnToggleValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 52584e6a54ad485e63831da76c86cf17
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: TimeControlScript
   - hash:
       serializedVersion: 2
       Hash: 8bf800a764665b085fe469e8aea7f167
@@ -952,107 +1101,11 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: ba07607d9b14b13c75c4c41700717561
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerShotgun
-  - hash:
-      serializedVersion: 2
-      Hash: 7b9b0fdb271c1ed8e7e8ef2a87d83043
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerPistol
-  - hash:
-      serializedVersion: 2
       Hash: b8885d954f0f0faceb815e71e7097240
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ShotgunBullet
-  - hash:
-      serializedVersion: 2
-      Hash: 7e10ff0626672112fbe3b589e3d82cbe
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: GrenadeScript
-  - hash:
-      serializedVersion: 2
-      Hash: 52584e6a54ad485e63831da76c86cf17
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: TimeControlScript
-  - hash:
-      serializedVersion: 2
-      Hash: 937da5a88783c25a4edc4d092de57baf
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: UltimateSoundScript
-  - hash:
-      serializedVersion: 2
-      Hash: ae59ac1c260fe95e0af6d085d1cd647a
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: DestroyAfterTime
-  - hash:
-      serializedVersion: 2
-      Hash: 2a9f6d0dcd19ec1bc869895c1769ee00
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: WeaponsFollow
-  - hash:
-      serializedVersion: 2
-      Hash: e9aa4aeb7e61afb060e74a42539f3ec0
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Health
-  - hash:
-      serializedVersion: 2
-      Hash: 05277516a8d7dd20bd9b052c337c3daa
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: ShockWaveScript
-  - hash:
-      serializedVersion: 2
-      Hash: 8e1a9dff5881e9e0b1ace91d378305b2
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PistolCanShootIndicators
-  - hash:
-      serializedVersion: 2
-      Hash: b481988005615df84f826b80aafc19be
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PistolBullet
-  - hash:
-      serializedVersion: 2
-      Hash: 3e31e363acb124e7280b7535aa24d147
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerChangeWeapons
-  - hash:
-      serializedVersion: 2
-      Hash: bd4ee7c1cd814ad5e5d0d1a4d0703d0d
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerNewMovement
-  - hash:
-      serializedVersion: 2
-      Hash: d6322cfb0258cefc5628d59a0f3bc591
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: CameraFPV
-  - hash:
-      serializedVersion: 2
-      Hash: f214d698a81fb9650366ef817230c0fa
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: Restart
-  - hash:
-      serializedVersion: 2
-      Hash: 4bc232ebf3bfe0dd8458b3d2090293f9
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: TargetPoint
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Test.unity
+  - Assets/Scenes/Levels/Level-1-Storage.unity
   playerPath: C:/Users/mihai/Desktop/Builds/The Hop Warfare.exe
