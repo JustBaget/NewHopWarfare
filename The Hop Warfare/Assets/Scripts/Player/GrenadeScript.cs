@@ -5,6 +5,8 @@ public class GrenadeScript : MonoBehaviour
     public float expForce = 10f;
     public float force;
     public float radius = 5f;
+    public float damage;
+    public float playerDamage;
     public float shakeStrength;
     public int shakeDuration;
     public GameObject explosion;
@@ -36,6 +38,14 @@ public class GrenadeScript : MonoBehaviour
             if (nearbyObject.GetComponent<Rigidbody>() != null)
             {
                 nearbyObject.GetComponent<Rigidbody>().AddExplosionForce(expForce, transform.position, radius);
+            }
+            if (nearbyObject.GetComponent<Health>() != null)
+            {
+                nearbyObject.GetComponent<Health>().hp -= damage;
+            }
+            if (nearbyObject.GetComponent<PlayerHealth>() != null)
+            {
+                nearbyObject.GetComponent<PlayerHealth>().Damage(playerDamage);
             }
         }
         Destroy(gameObject);

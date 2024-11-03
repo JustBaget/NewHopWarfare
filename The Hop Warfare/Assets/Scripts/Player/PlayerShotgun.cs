@@ -45,6 +45,10 @@ public class PlayerShotgun : MonoBehaviour
     bool colorChangedToTooMuch = false;
     bool isShaking = false;
 
+    [Header("Отбрасывание предметов")]
+    public float expForce;
+    public float radius;
+
     [Header("Индикатор для Особой Атаки")]
     public GameObject indicatorObject;
     public Animator indicator;
@@ -61,7 +65,7 @@ public class PlayerShotgun : MonoBehaviour
 
     void Start()
     {
-        playerRB = GameObject.Find("Player").GetComponent<Rigidbody>();
+        //playerRB = GameObject.Find("Player").GetComponent<Rigidbody>();
         cameraFPV = GameObject.Find("FPV Camera").GetComponent<CameraFPV>();
         target = GameObject.Find("Target");
         indicator.SetTrigger("Unloading");
@@ -137,9 +141,16 @@ public class PlayerShotgun : MonoBehaviour
             StopCoroutine(ShotgunShake()); //Отменяем корутину тряски
             Fire(false); //Тушим огонь
             LoadingParticles(false); //Отключаем зарядку
+
+            Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
+            foreach (Collider nearbyObject in colliders)
+                if (nearbyObject.GetComponent<Rigidbody>() != null)
+            {
+                nearbyObject.GetComponent<Rigidbody>().AddExplosionForce(expForce, transform.position, radius);
+            }
             //playerRB.AddForce((playerRB.position - target.transform.position).normalized * specialAttackKnockdown, ForceMode.VelocityChange); //Отдача
 
-                for (int i = 0; i < effectsStrong.Length; i++) //Эффекты
+            for (int i = 0; i < effectsStrong.Length; i++) //Эффекты
                 {
                     effectsStrong[i].Play();
                 }

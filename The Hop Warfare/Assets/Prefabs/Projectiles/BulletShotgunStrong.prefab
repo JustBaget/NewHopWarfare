@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9185590484544055395}
   - component: {fileID: 2909949093580341999}
   - component: {fileID: 4950616390668107877}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: BulletShotgunStrong
   m_TagString: PlayerBulletShotgun
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 72
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 0
@@ -150,7 +150,7 @@ MonoBehaviour:
   speed: 75
   damage: 20
   lifeTime: 5
-  spread: 45
+  spread: 30
 --- !u!1 &8733607023422835444
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,7 +161,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4305554440745555506}
   - component: {fileID: 6942649380865684993}
-  m_Layer: 7
+  m_Layer: 3
   m_Name: Trail
   m_TagString: Untagged
   m_Icon: {fileID: 0}
