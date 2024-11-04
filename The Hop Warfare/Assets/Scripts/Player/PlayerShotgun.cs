@@ -24,7 +24,9 @@ public class PlayerShotgun : MonoBehaviour
     public ParticleSystem[] effectsWeak;
 
     [Header("Особая Атака")]
-    public int specialBulletCount;
+    public bool usingSpecial = false;
+    public int maxSpecialBulletCount;
+    public float specialBulletCount;
     public float specialAttackDuration; //Время для спец атаки
     public float specialAttackTooMuch; //Предупреждение о приближении к ограничению по времени
     public float specialAttackMaxDuration; //Максимум времени для спец атаки
@@ -40,7 +42,6 @@ public class PlayerShotgun : MonoBehaviour
     float startTime; //Время начала спец атаки
     float currentTime; //Сколько прошло с начала спец атаки
     public ParticleSystem[] effectsStrong; //Подсказка: 0 - зеленый; 1 - оранжевый; 2 - красный
-    bool usingSpecial = false;
     bool colorChangedToReady = false;
     bool colorChangedToTooMuch = false;
     bool isShaking = false;
@@ -63,12 +64,16 @@ public class PlayerShotgun : MonoBehaviour
     public float recoilTime;
     public float verticalRecoil;
 
+    [Header("Контроллер оружия")]
+    public WeaponController weaponController;
+    public PlayerChangeWeapons weaponChange;
+
     void Start()
     {
         //playerRB = GameObject.Find("Player").GetComponent<Rigidbody>();
         cameraFPV = GameObject.Find("FPV Camera").GetComponent<CameraFPV>();
         target = GameObject.Find("Target");
-        indicator.SetTrigger("Unloading");
+        indicator.SetBool("Loadin'", false);
         indicatorColor = indicatorObject.GetComponent<Renderer>();
         indicatorColor.material.color = colors[0];
         soundManager = GameObject.Find("SoundManager").GetComponent<UltimateSoundScript>();
@@ -78,11 +83,23 @@ public class PlayerShotgun : MonoBehaviour
     {
         Shot();
         ShotSpecial();
+
+        weaponController.isUsingSpecial = usingSpecial;
+        if (usingSpecial)
+        {
+            specialBulletCount = Mathf.Lerp(specialBulletCount, maxSpecialBulletCount, 0.25f * Time.deltaTime);
+            weaponChange.canChange = false;
+        }
+        else
+        {
+            specialBulletCount = 0;
+            weaponChange.canChange = true;
+        }
     }
 
     void Shot()
     {
-        if(Input.GetKey(KeyCode.Mouse0) && canShootDefault)
+        if(Input.GetKey(KeyCode.Mouse0) && weaponController.canShotgunShootDefault)
         {
             for (int i = 0; i < defaultBulletCount; i++)
             {
@@ -97,7 +114,7 @@ public class PlayerShotgun : MonoBehaviour
             soundManager.ShotgunShotSounds();
             handRecoil.SetTrigger("ShotgunRecoil");
             //StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
-            StartCoroutine(Reload());
+            weaponController.ShotgunReloadStart(defaultReloadTime);
         }
     }
 
@@ -119,13 +136,14 @@ public class PlayerShotgun : MonoBehaviour
             startTime = Time.time; //Начался отсчет до спец атаки
             usingSpecial = true; //Спец атака используется
             canShootDefault = false; //Обычная атака отключена
-            indicator.SetTrigger("Loading"); //Началась анимация зарядки
+            indicator.SetBool("Loadin'", true); //Началась анимация зарядки
             indicatorColor.material.color = colors[0]; //Меняем цвет на зеленый
             colorChangedToReady = false; //Отмена смены цвета
             colorChangedToTooMuch = false; //Цвет не менялся
             isShaking = true; //Начинаем тряску
             StartCoroutine(ShotgunShake()); //Запускаем корутину тряски
             LoadingParticles(true); //Запускаем зарядку
+            weaponController.canShotgunShootDefault = false;
         }
 
         else if(Input.GetMouseButtonUp(1) && currentTime >= specialAttackDuration) //Кнопку отпустили И прошло достаточно времени
@@ -135,12 +153,13 @@ public class PlayerShotgun : MonoBehaviour
             canShootDefault = true; //Можно делать обычный выстрел
             //StartCoroutine(cameraFPV.InstantShake(shakeSpecialStrength, shakeSpecialDuration)); //Тряска камеры
             handRecoil.SetTrigger("ShotgunRecoil"); //Анимация отдачи
-            indicator.SetTrigger("Unloading"); //Анимация разрядки индикатора
+            indicator.SetBool("Loadin'", false); //Анимация разрядки индикатора
             Instantiate(explosionDonut, firePoint.transform.position, firePoint.transform.rotation); //Создание колцевого взрыва
             isShaking = false; //Отменяем тряску
             StopCoroutine(ShotgunShake()); //Отменяем корутину тряски
             Fire(false); //Тушим огонь
             LoadingParticles(false); //Отключаем зарядку
+            soundManager.ShotgunShotSounds();
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider nearbyObject in colliders)
@@ -160,6 +179,7 @@ public class PlayerShotgun : MonoBehaviour
                     Instantiate(extraBullet, firePoint.transform.position, firePoint.transform.rotation);
                 }
             player.StartRecoil(recoilForce, verticalRecoil, recoilTime);
+            weaponController.ShotgunReloadStart(defaultReloadTime);
         }
 
         //КОЛХОЗНЫЕ ТАЙМЕРЫ - их задача отслеживать время зажатия и делать что-то, отталикваясь от этого
@@ -191,19 +211,20 @@ public class PlayerShotgun : MonoBehaviour
             Debug.Log("Недостаточно держал. Атака отменена");
             colorChangedToReady = false; //Цвет не менялся
             colorChangedToTooMuch = false; //Цвет не менялся
-            indicator.SetTrigger("Unloading"); //Анимация разрядки индикатора
+            indicator.SetBool("Loadin'", false); //Анимация разрядки индикатора
             usingSpecial = false; //Щас не используется спец атака
             canShootDefault = true; //Можно делать обычный выстрел
             isShaking = false; //Отменяем тряску
             StopCoroutine(ShotgunShake()); //Отменяем корутину тряски
             Fire(false); //Тушим огонь
             LoadingParticles(false); //Отключаем зарядку
+            weaponController.canShotgunShootDefault = true;
         }
 
         if(currentTime >= specialAttackMaxDuration) //Игрок передежрал кнопку
         {
             Debug.Log("Слишком долго. Атака отменена");
-            indicator.SetTrigger("Unloading"); //Анимация разрядки индикатора
+            indicator.SetBool("Loadin'", false); //Анимация разрядки индикатора
             usingSpecial = false; //Щас не используется спец атака
             canShootDefault = true; //Можно делать обычный выстрел
             isShaking = false; //Отменяем тряску
@@ -213,6 +234,7 @@ public class PlayerShotgun : MonoBehaviour
             Instantiate(explosionSphere, firePoint.transform.position, firePoint.transform.rotation); //Создаем взрыв
             //playerRB.AddForce((playerRB.position - target.transform.position).normalized * specialAttacFailKnockdown, ForceMode.VelocityChange);
             Instantiate(explosionDonut, firePoint.transform.position, firePoint.transform.rotation); //Создание колцевого взрыва
+            weaponController.ShotgunReloadStart(defaultReloadTime);
         }
     }
 
@@ -268,12 +290,5 @@ public class PlayerShotgun : MonoBehaviour
         }
 
         shotgunModel.transform.localPosition = startPos;
-    }
-
-    IEnumerator Reload()
-    {
-        canShootDefault = false;
-        yield return new WaitForSeconds(defaultReloadTime);
-        canShootDefault = true;
     }
 }

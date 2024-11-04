@@ -369,6 +369,7 @@
 "Assets/Scripts/Player/PlayerPistol.cs"
 "Assets/Scripts/Player/PlayerShotgun.cs"
 "Assets/Scripts/Player/ShotgunBullet.cs"
+"Assets/Scripts/Player/WeaponController.cs"
 "Assets/Scripts/ShockWaveScript.cs"
 "Assets/Scripts/TargetPoint.cs"
 "Assets/Scripts/Utilits/DestroyAfterTime1.cs"

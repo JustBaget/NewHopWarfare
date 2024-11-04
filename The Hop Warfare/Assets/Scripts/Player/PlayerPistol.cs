@@ -23,6 +23,10 @@ public class PlayerPistol : MonoBehaviour
     public Animator pistolAnimation2;
     public ParticleSystem[] effect;
     UltimateSoundScript soundManager;
+
+    [Header("Контроллер оружия")]
+    public WeaponController weaponController;
+    public GameObject indicator;
     void Start()
     {
         cameraFPV = GameObject.Find("FPV Camera").GetComponent<CameraFPV>();
@@ -33,19 +37,28 @@ public class PlayerPistol : MonoBehaviour
     {
         Shot();
         ShotGrenade();
+
+        if(weaponController.canPistolShootGrenade)
+        {
+            indicator.SetActive(true);
+        }
+        else
+        {
+            indicator.SetActive(false);
+        }
     }
 
     void Shot()
     {
-        if(Input.GetKey(KeyCode.Mouse0) && canShot)
+        if(Input.GetKey(KeyCode.Mouse0) && weaponController.canPistolShoot)
         {
+            weaponController.PistolReloadStart(reloadTime);
             Instantiate(bullet, firePoint.transform.position, firePoint.transform.rotation);
             pistolAnimation.SetTrigger("ShotTrigger");
             pistolAnimation2.SetTrigger("ShotUsuialBullet");
-            canShot = false;
+            weaponController.canPistolShoot = false;
             soundManager.PistolShotSounds();
             //StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
-            StartCoroutine(Reload());
 
             for (int i = 0; i < effect.Length; i++)
             {
@@ -56,26 +69,14 @@ public class PlayerPistol : MonoBehaviour
 
     void ShotGrenade()
     {
-        if(Input.GetKeyDown(KeyCode.Mouse1) && canShotGrenade)
+        if(Input.GetKeyDown(KeyCode.Mouse1) && weaponController.canPistolShootGrenade)
         {
+            weaponController.PistolReloadGrenadeStart(reloadTimeForGrenade);
             pistolAnimation.SetTrigger("ShotTrigger");
             Instantiate(grenade, firePoint.transform.position, firePoint.transform.rotation);
             //StartCoroutine(cameraFPV.InstantShake(shakeStrength, shakeDuration));
             soundManager.PistolGrenadeSound();
-            StartCoroutine(ReloadGrenade());
-            canShotGrenade = false;
+            weaponController.canPistolShootGrenade = false;
         }
-    }
-
-    IEnumerator Reload()
-    {
-        yield return new WaitForSeconds(reloadTime);
-        canShot = true;
-    }
-
-    IEnumerator ReloadGrenade()
-    {
-        yield return new WaitForSeconds(reloadTimeForGrenade);
-        canShotGrenade = true;
     }
 }

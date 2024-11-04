@@ -117,6 +117,10 @@ public class Movement : MonoBehaviour
                 moveDirection.y = 0;
             }
         }
+
+        speedXModifier = Mathf.Lerp(speedXModifier, 0, 3 * Time.deltaTime);
+        speedYModifier = Mathf.Lerp(speedYModifier, 0, 0.5f * Time.deltaTime);
+
         //вращение камерой
         if (canMove)
         {
@@ -165,8 +169,8 @@ public class Movement : MonoBehaviour
         speedXModifier = force - (cameraRotation * 3);
         speedYModifier = cameraRotation * verticalForce;
         yield return new WaitForSeconds(cooldown);
-        speedXModifier = 0;
-        speedYModifier = 0;
+        //speedXModifier = 0;
+        //speedYModifier = 0;
         isRecoilActive = false;
     }
 }

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerChangeWeapons : MonoBehaviour
 {
+    public bool canChange;
     public int currentGun;
     public GameObject[] weapons;
     void Start()
@@ -16,7 +17,7 @@ public class PlayerChangeWeapons : MonoBehaviour
 
     void ChangeWeapons()
     {
-        if(Input.GetKeyDown(KeyCode.Q))
+        if(Input.GetKeyDown(KeyCode.Q) && canChange)
         {
             Debug.Log("Убрана пушка - " + weapons[currentGun] + ", Вытащена пушка - " + weapons[(currentGun + 1) % weapons.Length]);
             weapons[currentGun].SetActive(false);
