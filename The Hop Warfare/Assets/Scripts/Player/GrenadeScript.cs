@@ -39,9 +39,9 @@ public class GrenadeScript : MonoBehaviour
             {
                 nearbyObject.GetComponent<Rigidbody>().AddExplosionForce(expForce, transform.position, radius);
             }
-            if (nearbyObject.GetComponent<Health>() != null)
+            if (nearbyObject.GetComponent<Health>() != null && nearbyObject.GetComponent<Health>().isMain)
             {
-                nearbyObject.GetComponent<Health>().hp -= damage;
+                nearbyObject.GetComponent<Health>().Damage(damage);
             }
             if (nearbyObject.GetComponent<PlayerHealth>() != null)
             {

@@ -34,12 +34,11 @@ public class ShotgunBullet : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("hit");
         Destroy(gameObject);
 
-        if (collision.gameObject.GetComponent<Health>() != null)
+        if (collision.gameObject.GetComponent<Health>() != null && collision.gameObject.GetComponent<Health>())
         {
-            collision.gameObject.GetComponent<Health>().hp -= damage;
+            collision.gameObject.GetComponent<Health>().Damage(damage);
         }
     }
 }

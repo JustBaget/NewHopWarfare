@@ -45,6 +45,7 @@ public class PlayerShotgun : MonoBehaviour
     bool colorChangedToReady = false;
     bool colorChangedToTooMuch = false;
     bool isShaking = false;
+    bool isReady = false;
 
     [Header("Отбрасывание предметов")]
     public float expForce;
@@ -87,12 +88,15 @@ public class PlayerShotgun : MonoBehaviour
         weaponController.isUsingSpecial = usingSpecial;
         if (usingSpecial)
         {
-            specialBulletCount = Mathf.Lerp(specialBulletCount, maxSpecialBulletCount, 0.25f * Time.deltaTime);
             weaponChange.canChange = false;
+        }
+        if(isReady)
+        {
+            specialBulletCount = Mathf.Lerp(specialBulletCount, maxSpecialBulletCount, 0.2f * Time.deltaTime);
         }
         else
         {
-            specialBulletCount = 0;
+            specialBulletCount = 10;
             weaponChange.canChange = true;
         }
     }
@@ -160,6 +164,7 @@ public class PlayerShotgun : MonoBehaviour
             Fire(false); //Тушим огонь
             LoadingParticles(false); //Отключаем зарядку
             soundManager.ShotgunShotSounds();
+            isReady = false;
 
             Collider[] colliders = Physics.OverlapSphere(transform.position, radius);
             foreach (Collider nearbyObject in colliders)
@@ -186,6 +191,7 @@ public class PlayerShotgun : MonoBehaviour
 
         if(currentTime >= specialAttackDuration && !colorChangedToReady) //Игрок держит кнопку достаточно времени, а также цвет еще не менялся
         {
+            isReady = true;
             colorChangedToReady = true; //Цвет поменялся внимание
             Debug.Log("Атака готова"); //Смена цвета на готовый к атаке
             indicatorColor.material.color = colors[1]; //Меняем цвет на оранжевый
@@ -219,6 +225,7 @@ public class PlayerShotgun : MonoBehaviour
             Fire(false); //Тушим огонь
             LoadingParticles(false); //Отключаем зарядку
             weaponController.canShotgunShootDefault = true;
+            isReady = false;
         }
 
         if(currentTime >= specialAttackMaxDuration) //Игрок передежрал кнопку
@@ -235,6 +242,7 @@ public class PlayerShotgun : MonoBehaviour
             //playerRB.AddForce((playerRB.position - target.transform.position).normalized * specialAttacFailKnockdown, ForceMode.VelocityChange);
             Instantiate(explosionDonut, firePoint.transform.position, firePoint.transform.rotation); //Создание колцевого взрыва
             weaponController.ShotgunReloadStart(defaultReloadTime);
+            isReady = false;
         }
     }
 
