@@ -6,6 +6,8 @@ TagManager:
   tags:
   - PlayerBulletPistol
   - PlayerBulletShotgun
+  - Ground
+  - Difficulty
   layers:
   - Default
   - TransparentFX

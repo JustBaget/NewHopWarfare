@@ -240,13 +240,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 8575832514780409783}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a926ec69aef4a44b92616c6289818f9, type: 3}
+  m_Script: {fileID: 11500000, guid: 6c8bb5310c9c81c43a72b47aeccb0060, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  difficulty: {fileID: 0}
   rb: {fileID: 0}
-  spawn: {fileID: 0}
-  speed: 20
-  lifetime: 1.5
+  speed: 25
+  lifetime: 2
+  speedModifier:
+  - 0.75
+  - 1.25
+  - 1.5
 --- !u!1001 &4670442317895514213
 PrefabInstance:
   m_ObjectHideFlags: 0

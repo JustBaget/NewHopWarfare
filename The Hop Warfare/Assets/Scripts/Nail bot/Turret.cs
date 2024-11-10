@@ -19,7 +19,7 @@ public class Turret : MonoBehaviour
         transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(0, aim.transform.eulerAngles.y - 90, 0), rotationSpeed * Time.deltaTime);
         if (gun.transform.localRotation.z <= 45 && gun.transform.localRotation.z >= -45)
         {
-            gun.transform.localRotation = Quaternion.Euler(0, 180, aim.transform.eulerAngles.x - 180);
+            gun.transform.localRotation = Quaternion.Euler(-aim.transform.eulerAngles.x, -90, 0);
         }
 
         angle = aim.transform.eulerAngles.x - 180;

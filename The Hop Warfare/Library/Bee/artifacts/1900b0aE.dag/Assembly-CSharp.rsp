@@ -361,6 +361,7 @@
 -analyzer:"R:/Unity/2022.3.32f1/Editor/Data/Tools/Unity.SourceGenerators/Unity.SourceGenerators.dll"
 "Assets/QuickOutline/Scripts/Outline.cs"
 "Assets/Scripts/CameraFPV.cs"
+"Assets/Scripts/Difficulty.cs"
 "Assets/Scripts/Health.cs"
 "Assets/Scripts/Nail bot/MoveToPlayer.cs"
 "Assets/Scripts/Nail bot/Nail.cs"
