@@ -382,6 +382,8 @@
 "Assets/Scripts/ShockWaveScript.cs"
 "Assets/Scripts/TargetPoint.cs"
 "Assets/Scripts/Utilits/DestroyAfterTime1.cs"
+"Assets/Scripts/Utilits/Doors/LastPartUnloading.cs"
+"Assets/Scripts/Utilits/Doors/NewPartLoad.cs"
 "Assets/Scripts/Utilits/PlayerHandsFollowCamera.cs"
 "Assets/Scripts/Utilits/Restart.cs"
 "Assets/Scripts/Utilits/TimeControlScript1.cs"

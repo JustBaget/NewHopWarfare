@@ -2,10 +2,17 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - DestroyAfterTime
+    - Difficulty
     - GrenadeScript
+    - LastPartUnloading
+    - MoveToPlayer
     - Movement
+    - Nail
+    - NailGuns
+    - NewPartLoad
     - PistolBullet
     - PistolCanShootIndicators
+    - PlayerAim
     - PlayerChangeWeapons
     - PlayerHandsFollowCamera
     - PlayerPistol
@@ -14,8 +21,11 @@ ScriptsOnlyBuild:
     - ShockWaveScript
     - ShotgunBullet
     - TargetPoint
+    - Turret
     - UltimateSoundScript
     - WeaponController
+    Unity.AI.Navigation.dll:
+    - Unity.AI.Navigation.NavMeshSurface
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro:
@@ -26,10 +36,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -57,7 +65,7 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.GlyphRect
   methodsToPreserve: []
   sceneClasses:
-    Assets/Scenes/Test.unity:
+    Assets/Scenes/Levels/1. Storage.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -79,6 +87,8 @@ ScriptsOnlyBuild:
     - Class: 49
       Script: {instanceID: 0}
     - Class: 54
+      Script: {instanceID: 0}
+    - Class: 64
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
@@ -105,41 +115,53 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2282}
     - Class: 114
+      Script: {instanceID: 2364}
+    - Class: 114
       Script: {instanceID: 2542}
+    - Class: 114
+      Script: {instanceID: 3076}
     - Class: 114
       Script: {instanceID: 3306}
     - Class: 114
-      Script: {instanceID: 3992}
+      Script: {instanceID: 3512}
     - Class: 114
-      Script: {instanceID: 4020}
+      Script: {instanceID: 3518}
     - Class: 114
-      Script: {instanceID: 4272}
+      Script: {instanceID: 3648}
     - Class: 114
-      Script: {instanceID: 4530}
+      Script: {instanceID: 4200}
     - Class: 114
-      Script: {instanceID: 4694}
+      Script: {instanceID: 4276}
     - Class: 114
-      Script: {instanceID: 5252}
+      Script: {instanceID: 4534}
     - Class: 114
-      Script: {instanceID: 5422}
+      Script: {instanceID: 4698}
     - Class: 114
-      Script: {instanceID: 6206}
+      Script: {instanceID: 5256}
     - Class: 114
-      Script: {instanceID: 6244}
+      Script: {instanceID: 5426}
     - Class: 114
-      Script: {instanceID: 6466}
+      Script: {instanceID: 5444}
     - Class: 114
-      Script: {instanceID: 7342}
+      Script: {instanceID: 6210}
     - Class: 114
-      Script: {instanceID: 7390}
+      Script: {instanceID: 6248}
     - Class: 114
-      Script: {instanceID: 7510}
+      Script: {instanceID: 6470}
     - Class: 114
-      Script: {instanceID: 7622}
+      Script: {instanceID: 6642}
     - Class: 114
-      Script: {instanceID: 8188}
+      Script: {instanceID: 7322}
     - Class: 114
-      Script: {instanceID: 36970}
+      Script: {instanceID: 7348}
+    - Class: 114
+      Script: {instanceID: 7396}
+    - Class: 114
+      Script: {instanceID: 7516}
+    - Class: 114
+      Script: {instanceID: 7628}
+    - Class: 114
+      Script: {instanceID: 7818}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -156,11 +178,15 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
+    - Class: 195
+      Script: {instanceID: 0}
     - Class: 196
       Script: {instanceID: 0}
     - Class: 198
       Script: {instanceID: 0}
     - Class: 199
+      Script: {instanceID: 0}
+    - Class: 238
       Script: {instanceID: 0}
   scriptHashData:
   - hash:
@@ -481,6 +507,18 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
     className: UnityOnSelectMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 6b77edccf3197936d3005d92a90dcae3
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: LastPartUnloading
+  - hash:
+      serializedVersion: 2
+      Hash: d9fe421a0e76359ebd14447f98315e15
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: NewPartLoad
   - hash:
       serializedVersion: 2
       Hash: 5b8b7230ad968399f6726aa1269dcdcb
@@ -981,6 +1019,12 @@ ScriptsOnlyBuild:
     className: TextContainer
   - hash:
       serializedVersion: 2
+      Hash: 68c33b9c15fc2f79984bb5a8b94e9ec0
+    assemblyName: Assembly-CSharp
+    namespaceName: 
+    className: PlayerHandsFollowCamera
+  - hash:
+      serializedVersion: 2
       Hash: f669be52680c88846b2093fd41d1e06e
     assemblyName: Unity.VisualScripting.Core
     namespaceName: Unity.VisualScripting
@@ -1273,13 +1317,7 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp
     namespaceName: 
     className: ShotgunBullet
-  - hash:
-      serializedVersion: 2
-      Hash: 68c33b9c15fc2f79984bb5a8b94e9ec0
-    assemblyName: Assembly-CSharp
-    namespaceName: 
-    className: PlayerHandsFollowCamera
   platform: 19
   scenePathNames:
-  - Assets/Scenes/Test.unity
+  - Assets/Scenes/Levels/1. Storage.unity
   playerPath: C:/Users/mihai/Desktop/ShooterBuilds/The Hop Warfare.exe

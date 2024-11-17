@@ -5090,6 +5090,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Particle System 1
       objectReference: {fileID: 0}
+    - target: {fileID: 303615104615159664, guid: 6451a8abe75b71247b597354b546e68a, type: 3}
+      propertyPath: m_Mesh
+      value: 
+      objectReference: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+    - target: {fileID: 303615104615159664, guid: 6451a8abe75b71247b597354b546e68a, type: 3}
+      propertyPath: m_RenderMode
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 1721457967236467702, guid: 6451a8abe75b71247b597354b546e68a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
